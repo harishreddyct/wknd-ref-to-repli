@@ -9,7 +9,7 @@ import lighthouse from 'lighthouse';
 import * as chromeLauncher from 'chrome-launcher';
 
 const BASE = process.env.BASE_URL || 'https://main--wknd-ref-to-repli--harishreddyct.aem.page';
-const ROUTES = ['/', '/magazine/', '/magazine/camper-vans-and-coastlines', '/adventures/', '/adventures/ridge-line-climbing-weekend', '/faqs', '/about-us'];
+const ROUTES = ['/', '/magazine/', '/magazine/western-australia', '/adventures/', '/adventures/bali-surf-camp', '/faqs', '/about-us'];
 const OUT_DIR = new URL('./output/', import.meta.url).pathname;
 mkdirSync(OUT_DIR, { recursive: true });
 
