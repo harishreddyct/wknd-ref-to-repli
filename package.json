@@ -1,7 +1,7 @@
 {
   "name": "wknd-adventures",
   "version": "1.0.0",
-  "description": "WKND Adventures - an Edge Delivery Services site (mock replication for reference-site-replication practice)",
+  "description": "WKND Adventures - an Edge Delivery Services site (code only; content is authored in DA, see AGENTS.md)",
   "license": "MIT",
   "private": true,
   "type": "module",
@@ -9,11 +9,12 @@
     "lint:js": "eslint .",
     "lint:css": "stylelint '**/*.css'",
     "lint": "npm run lint:js && npm run lint:css",
-    "serve": "npx -y @web/dev-server --root-dir . --open --config web-dev-server.config.mjs",
+    "serve": "aem up --url https://main--wknd-ref-to-repli--harishreddyct.aem.page",
     "lighthouse": "node tools/lighthouse/run.mjs",
     "visual-diff": "node tools/visual-validation/run.mjs"
   },
   "devDependencies": {
+    "@adobe/aem-cli": "16.21.21",
     "eslint": "8.57.0",
     "stylelint": "16.9.0",
     "stylelint-config-standard": "36.0.1",

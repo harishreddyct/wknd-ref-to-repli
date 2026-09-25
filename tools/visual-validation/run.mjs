@@ -1,9 +1,15 @@
-/* Screenshots local routes at the project's breakpoints via Playwright, for side-by-side review against the reference. Writes to output/ (gitignored). */
+/*
+ * Screenshots routes at the project's breakpoints via Playwright, for
+ * side-by-side review against the reference. Writes to output/
+ * (gitignored). Content lives in DA, not in this repo (see AGENTS.md), so
+ * this targets the deployed preview site by default — override BASE_URL to
+ * point at a different branch/preview if needed.
+ */
 import { mkdirSync } from 'node:fs';
 import { chromium } from 'playwright';
 
-const BASE = process.env.BASE_URL || 'http://localhost:8000';
-const ROUTES = ['/', '/magazine', '/magazine/camper-vans-and-coastlines', '/adventures', '/adventures/ridge-line-climbing-weekend', '/faqs', '/about-us'];
+const BASE = process.env.BASE_URL || 'https://main--wknd-ref-to-repli--harishreddyct.aem.page';
+const ROUTES = ['/', '/magazine/', '/magazine/camper-vans-and-coastlines', '/adventures/', '/adventures/ridge-line-climbing-weekend', '/faqs', '/about-us'];
 const WIDTHS = [375, 768, 960, 1200];
 const OUT_DIR = new URL('./output/', import.meta.url).pathname;
 mkdirSync(OUT_DIR, { recursive: true });
