@@ -21,10 +21,10 @@
 
 .cards-card-body h3 {
   font-family: var(--font-body);
-  font-size: var(--font-size-label);
-  font-weight: 700;
+  font-size: var(--font-size-body);
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   margin-bottom: 0.5em;
 }
 
@@ -34,7 +34,10 @@
 }
 
 .cards-card-body p {
-  color: var(--color-text-muted);
+  color: #696969;
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+  margin-top: 1em;
   margin-bottom: 0;
 }
 
@@ -74,10 +77,16 @@
 
 .cards.feature .cards-card-body > p:first-child {
   font-weight: 700;
-  text-transform: uppercase;
-  font-size: var(--font-size-small);
-  letter-spacing: 0.02em;
-  color: var(--color-text-muted);
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  margin-top: 0;
+}
+
+.cards.feature .cards-card-body p:not(:first-child),
+.cards.list .cards-card-body p {
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
 }
 
 .cards.feature .cards-card-body {
