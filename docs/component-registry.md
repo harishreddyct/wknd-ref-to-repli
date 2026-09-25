@@ -2,14 +2,16 @@
 
 Source of truth for what's built and where it's used. Check before creating anything — see `.claude/skills/reference-site-replication/references/naming-rules.md`.
 
-**Scope note on all rows below**: the reference (wknd.site) is classic AEM, not Edge Delivery Services — no `data-block-name` or other reliable component-name attributes were exposed in the fetched markup. Every "Implementation" name below is Claude's own semantic naming, not a name recovered from the reference. Colors, exact spacing and the font stack are also Claude's own choices (semantic placeholders), not values read from the reference's computed styles — no browser/computed-style access to the live site was available in this environment, only a markdown-converted read of each page's rendered content and links.
+**Scope note on all rows below**: the reference (wknd.site) is classic AEM, not Edge Delivery Services — no `data-block-name` or other reliable component-name attributes were exposed in the fetched markup. Every "Implementation" name below is Claude's own semantic naming, not a name recovered from the reference.
+
+**Update — real design tokens (later session)**: colors, typography, and several layout details below were initially Claude's own placeholder choices, then later corrected against values read directly from the reference's *computed* styles via a headless-browser (Playwright) inspection pass — see "Real design tokens" below for what was actually measured and the bugs that measurement caught.
 
 | Reference (as observed) | Implementation | Used On | Variants | JS | Images | LCP Risk | CLS Risk | Status |
 |---|---|---|---|---|---|---|---|---|
 | Primary nav + language selector + sign in | `header` | all pages | — | minimal (menu toggle) | No | Low | Low | complete |
 | Footer nav + social row + copyright | `footer` | all pages | — | minimal (icon decoration) | No | Low | Low | complete |
 | Hero carousel (home) / page banner (listing pages) / trip photo carousel (adventure detail) | `hero` | /, /adventures, /magazine, /faqs, all adventure detail pages | `hero-static` (1 slide), `hero-carousel` (2+ slides) | minimal (carousel controls only; static variant has none) | Yes | High — always the LCP candidate where present | Medium (carousel swaps slide visibility, no layout shift since inactive slides are `display:none` at fixed aspect ratio) | complete |
-| Article card / Adventure card (same responsibility observed on both content types: image + title + description + link) | `cards` | /, /magazine, /adventures, all detail pages | `default` (grid), `feature` (single large horizontal card), `list` (single-column, horizontal at desktop), `locked` (members-only teaser) | none | Yes | Low–Medium (grid can appear below the fold) | Low | complete |
+| Article card / Adventure card (same responsibility observed on both content types: image + title + description + link) | `cards` | /, /magazine, /adventures, all detail pages | `default` (4-col wrapping grid, confirmed via computed-style measurement on both the magazine and adventures listings — an earlier `list` single-column horizontal variant was removed once measurement showed neither listing actually uses it), `feature` (single large horizontal card), `locked` (members-only teaser) | none | Yes | Low–Medium (grid can appear below the fold) | Low | complete |
 | Adventures category filter buttons | `filters` | /adventures | — | minimal (client-side show/hide by `data-category`, set by a `cards` block in the same section) | No | n/a | Low | complete |
 | Contributors / WKND Guides team grid | `team` | /about-us | `guides` (3-column at desktop vs. default 4-column) | none | Yes | Low | Low | complete |
 | Overview / Itinerary / What to Bring tabs (adventure detail) | `tabs` | all adventure detail pages | — | minimal (ARIA tablist: click + arrow-key switching — this one genuinely needs JS, see `eds-performance-seo.md`'s JS section) | No | n/a | Low | complete |
@@ -42,6 +44,17 @@ Confirmed by direct, repeated testing against the live project (not documentatio
 This is **not** about whether a matching `blocks/{name}/` folder exists in the code repo — creating the folder alone did not fix it; the authored HTML shape is what matters. Every block in this project that isn't naturally row-shaped (`breadcrumbs`, `meta-list`, `filters`, `byline`) had to be re-authored as one-row-per-item with a div-wrapped cell, and its `decorate()` rewritten to reconstruct the real semantic element (`<ol>`, `<ul>`, `<p>`) client-side — see `blocks/breadcrumbs/breadcrumbs.js` for the reference implementation and rationale, and apply the same shape to any new non-grid block content authored here in the future.
 
 A second-order consequence: `decorateButtons()` (in `scripts/aem.js`) treats any link that's the lone child of a cell div as a CTA button. Since breadcrumb links now live in exactly that shape, `breadcrumbs.js` explicitly strips the `button`/`primary`/`secondary` classes back off before use — don't remove that without checking the rendered output.
+
+## Real design tokens
+
+Measured directly from `getComputedStyle()` against the live wknd.site (Playwright, not guessed):
+
+- **Colors**: text/dark `#202020`, muted text `#5c5c5c`, accent (buttons, active-nav, underline) `#ffea00`, borders `#e0e0e0`.
+- **Type**: body `Source Sans Pro`, headings `Asar` (serif). Headings do **not** scale down at narrower widths — H1/H2/H3 are fixed at 40px/36px/24px (1.5 line-height) at 375px, 768px and 1280px alike; the responsive up-scaling this project originally had at 768/1200px breakpoints was wrong and has been removed.
+- **Card grid text** (the plain 4-col grid, not `feature`): title 18px/600 weight uppercase Source Sans Pro (not 14px/700 as first guessed), description 14px/`#696969`. The `feature` card's "Featured Article" eyebrow is a plain bold 18px line (same size as body text, no uppercase, no letter-spacing, dark color) — not a small gray caps label as first guessed.
+- **Header**: two-tier (dark utility bar + white main bar), search input is a visible styled box at every width (not hidden until desktop), region/language link gets a small dropdown chevron, "Home" is intentionally absent from the header nav list (the wordmark links home; footer nav still includes it).
+- **Hero**: at ≥768px the caption card overlaps the bottom of the photo (measured ~180px overlap on a 640px-tall image) via a negative margin, not a plain stacked layout; at mobile widths (`flex-direction: column-reverse` on the reference) it's a plain non-overlapping stack — both are implemented in `hero.css`.
+- **Known bug this measurement caught**: an `<img>` with HTML `width`/`height` attributes and a CSS `aspect-ratio` can render at its raw intrinsic pixel height instead of the aspect-ratio-derived one (reproduced in isolation outside DA/EDS — a general browser quirk, not project-specific). Fix is to also set `height: auto` explicitly alongside `aspect-ratio` — see `cards.css`. Worth checking for on any future block that combines sized `<img>` attributes with a CSS `aspect-ratio`.
 
 ## Notes
 
