@@ -54,15 +54,25 @@
 }
 
 .hero-dot {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 999px;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
-  background: var(--color-border);
+  background: none;
   padding: 0;
 }
 
-.hero-dot[aria-current='true'] {
+.hero-dot::before {
+  content: '';
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: var(--color-border);
+}
+
+.hero-dot[aria-current='true']::before {
   background: var(--color-text);
 }
 
