@@ -184,6 +184,14 @@ button, .button {
   background: var(--color-bg-alt);
 }
 
+/* a page's trailing metadata block leaves an empty section once the
+   platform extracts it into <head> — collapse it instead of showing
+   a blank padded strip at the bottom of every page */
+.section:empty {
+  display: none;
+  padding: 0;
+}
+
 /* hero sections bleed edge-to-edge instead of sitting inside section padding */
 .section:has(> .hero-wrapper) {
   padding-left: 0;
