@@ -2,35 +2,37 @@
  * Global, mobile-first styles needed for first paint. Below-the-fold rules
  * belong in lazy-styles.css instead — see AGENTS.md.
  *
- * Design tokens (color/type) are semantic placeholders, not values read off
- * the live reference (no computed-style access was available) — see
- * docs/component-registry.md for that scoping note.
+ * Design tokens are real values read directly from wknd.site's computed
+ * styles (via a headless-browser inspection pass), not guessed — see
+ * docs/component-registry.md's "Real design tokens" note for exactly what
+ * was measured and how.
  */
 
 :root {
   /* color */
-  --color-brand: #1a3c34;
-  --color-brand-dark: #0f2620;
-  --color-accent: #d9752b;
-  --color-accent-dark: #b25c1c;
-  --color-text: #1c1e1d;
-  --color-text-muted: #5b5f5e;
+  --color-text: #202020;
+  --color-text-muted: #5c5c5c;
   --color-bg: #fff;
-  --color-bg-alt: #f5f2ec;
-  --color-border: #e2ded4;
+  --color-bg-alt: #f2f2f2;
+  --color-border: #e0e0e0;
+  --color-dark: #202020;
+  --color-dark-text: #ebebeb;
+  --color-accent: #ffea00;
+  --color-accent-text: #202020;
   --color-focus: #1a73e8;
 
   /* type */
-  --font-body: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, helvetica, arial, sans-serif;
-  --font-heading: var(--font-body);
-  --font-size-body: 1rem;
+  --font-body: 'Source Sans Pro', 'Helvetica Neue', helvetica, arial, sans-serif;
+  --font-heading: asar, georgia, 'Times New Roman', times, serif;
+  --font-size-body: 1.125rem;
   --font-size-small: 0.875rem;
-  --font-size-h1: 2rem;
+  --font-size-label: 0.875rem;
+  --font-size-h1: 1.75rem;
   --font-size-h2: 1.5rem;
   --font-size-h3: 1.25rem;
   --font-size-h4: 1.125rem;
   --line-height-body: 1.6;
-  --line-height-heading: 1.2;
+  --line-height-heading: 1.25;
 
   /* layout */
   --wrapper-width: 1200px;
@@ -41,20 +43,21 @@
   --spacing-xl: 4rem;
 
   --nav-height: 4.5rem;
+  --utility-bar-height: 2.25rem;
 }
 
 @media (min-width: 768px) {
   :root {
-    --font-size-h1: 2.75rem;
+    --font-size-h1: 2.25rem;
     --font-size-h2: 2rem;
-    --font-size-h3: 1.5rem;
-    --font-size-h4: 1.25rem;
+    --font-size-h3: 1.375rem;
+    --font-size-h4: 1.125rem;
   }
 }
 
 @media (min-width: 1200px) {
   :root {
-    --font-size-h1: 3.25rem;
+    --font-size-h1: 2.5rem;
     --font-size-h2: 2.25rem;
   }
 }
@@ -65,7 +68,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-height);
+  scroll-padding-top: calc(var(--nav-height) + var(--utility-bar-height));
 }
 
 body {
@@ -83,7 +86,7 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  height: calc(var(--nav-height) + var(--utility-bar-height));
 }
 
 main {
@@ -94,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   line-height: var(--line-height-heading);
   margin: 0 0 var(--spacing-s);
-  font-weight: 700;
+  font-weight: 400;
 }
 
 h1 { font-size: var(--font-size-h1); }
@@ -102,17 +105,35 @@ h2 { font-size: var(--font-size-h2); }
 h3 { font-size: var(--font-size-h3); }
 h4, h5, h6 { font-size: var(--font-size-h4); }
 
+/* section/page headings carry the site's signature short yellow underline */
+.section > div > h1:first-child, .section > div > h2:first-child {
+  position: relative;
+  padding-bottom: var(--spacing-s);
+  margin-bottom: var(--spacing-m);
+}
+
+.section > div > h1:first-child::after,
+.section > div > h2:first-child::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 84px;
+  border-bottom: 2px solid var(--color-accent);
+}
+
 p, ul, ol {
   margin: 0 0 var(--spacing-s);
 }
 
 a {
-  color: var(--color-brand);
+  color: var(--color-text);
   text-decoration-color: var(--color-accent);
 }
 
 a:hover {
-  color: var(--color-accent-dark);
+  color: var(--color-text);
+  text-decoration-color: var(--color-text);
 }
 
 :focus-visible {
@@ -132,32 +153,35 @@ img, picture, svg {
 
 button, .button {
   font-family: var(--font-body);
-  font-size: var(--font-size-body);
+  font-size: var(--font-size-label);
   font-weight: 600;
   display: inline-block;
-  border-radius: 999px;
-  padding: 0.65em 1.5em;
-  border: 2px solid var(--color-brand);
-  background: var(--color-brand);
-  color: #fff;
+  border-radius: 0;
+  padding: 0.875em 2.2em;
+  border: 0;
+  background: var(--color-accent);
+  color: var(--color-accent-text);
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .button:hover, button:hover {
-  background: var(--color-brand-dark);
-  border-color: var(--color-brand-dark);
-  color: #fff;
+  background: #e0d200;
+  color: var(--color-accent-text);
 }
 
 .button.secondary {
   background: transparent;
-  color: var(--color-brand);
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  padding: calc(0.875em - 2px) calc(2.2em - 2px);
 }
 
 .button.secondary:hover {
-  background: var(--color-brand);
+  background: var(--color-text);
   color: #fff;
 }
 
@@ -220,7 +244,7 @@ button, .button {
   position: absolute;
   left: -999px;
   top: 0;
-  background: var(--color-brand);
+  background: var(--color-dark);
   color: #fff;
   padding: 0.75em 1.25em;
   z-index: 1000;
@@ -235,30 +259,10 @@ button, .button {
 .section.narrow blockquote {
   font-size: var(--font-size-h3);
   font-family: var(--font-heading);
-  color: var(--color-brand);
+  color: var(--color-text);
   border-left: 4px solid var(--color-accent);
   margin: var(--spacing-l) 0;
   padding-left: var(--spacing-m);
   font-style: normal;
 }
 
-/* cta banner (text-only, brand background) */
-.section.cta-banner {
-  background: var(--color-brand);
-  color: #fff;
-  text-align: center;
-}
-
-.section.cta-banner h2 {
-  color: #fff;
-}
-
-.section.cta-banner .button-wrapper .button {
-  background: #fff;
-  color: var(--color-brand);
-  border-color: #fff;
-}
-
-.section.cta-banner .button-wrapper .button:hover {
-  background: var(--color-bg-alt);
-}

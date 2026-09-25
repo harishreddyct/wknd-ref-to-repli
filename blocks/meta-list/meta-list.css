@@ -1,8 +1,7 @@
 .meta-list {
   margin: var(--spacing-m) 0;
-  padding: var(--spacing-m);
-  background: var(--color-bg-alt);
-  border-radius: 0.5rem;
+  padding-left: var(--spacing-m);
+  border-left: 3px solid var(--color-accent);
 }
 
 .meta-list ul {
@@ -16,15 +15,18 @@
 
 .meta-list li {
   font-size: var(--font-size-small);
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .meta-list strong {
   display: block;
   color: var(--color-text-muted);
-  font-weight: 500;
+  font-weight: 400;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  margin-bottom: 0.2em;
 }
 
 @media (min-width: 768px) {

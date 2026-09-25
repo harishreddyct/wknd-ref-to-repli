@@ -1,6 +1,6 @@
 footer {
-  background: var(--color-brand);
-  color: #fff;
+  background: var(--color-dark);
+  color: var(--color-dark-text);
 }
 
 .footer-wrapper > div {
@@ -13,8 +13,10 @@ footer {
 
 .footer-brand p {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .footer-brand a {
@@ -32,8 +34,11 @@ footer {
 }
 
 .footer-sections a {
-  color: rgb(255 255 255 / 85%);
+  color: var(--color-dark-text);
   text-decoration: none;
+  font-size: var(--font-size-small);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .footer-sections a:hover {
@@ -41,8 +46,11 @@ footer {
 }
 
 .footer-social p {
-  margin: 0 0 var(--spacing-xs);
+  margin: 0 0 var(--spacing-s);
   font-weight: 600;
+  font-size: var(--font-size-small);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .footer-social ul {
@@ -50,24 +58,28 @@ footer {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: var(--spacing-s);
+  gap: var(--spacing-xs);
 }
 
 .footer-social a {
-  color: #fff;
+  background: #fff;
+  color: var(--color-dark);
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
 }
 
 .footer-social .icon img {
-  width: 1.25rem;
-  height: 1.25rem;
-  filter: invert(1);
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .footer-legal p {
   margin: 0;
   font-size: var(--font-size-small);
-  color: rgb(255 255 255 / 70%);
+  color: #9c9c9c;
 }
 
 @media (min-width: 768px) {

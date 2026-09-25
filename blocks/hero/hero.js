@@ -1,7 +1,9 @@
 /*
- * Authoring shape: one row per slide. A single-row hero renders as a static
- * banner (used on Adventures/Magazine/FAQs); 2+ rows render as a carousel
- * (used on Home and adventure detail pages) — see docs/component-registry.md.
+ * Authoring shape: one row per slide. A row with only an image renders as a
+ * bare image carousel/banner (used everywhere except the homepage); a row
+ * that also has a heading/body/link renders that content *below* the image
+ * in normal flow (the homepage's "teaser" style hero) — see
+ * docs/component-registry.md.
  */
 
 function goToSlide(block, index) {
@@ -16,28 +18,17 @@ export default function decorate(block) {
   const rows = [...block.children];
   rows.forEach((row) => row.classList.add('hero-slide'));
 
-  if (rows.length <= 1) {
-    block.classList.add('hero-static');
-    if (rows[0]) rows[0].setAttribute('data-active', '');
-    return;
-  }
+  const isMultiSlide = rows.length > 1;
+  if (isMultiSlide) block.classList.add('hero-carousel');
+  else block.classList.add('hero-static');
 
-  block.classList.add('hero-carousel');
   block.dataset.activeSlide = 0;
-  rows[0].setAttribute('data-active', '');
+  if (rows[0]) rows[0].setAttribute('data-active', '');
+
+  if (!isMultiSlide) return;
 
   const controls = document.createElement('div');
   controls.className = 'hero-controls';
-
-  const prev = document.createElement('button');
-  prev.className = 'hero-arrow hero-prev';
-  prev.setAttribute('aria-label', 'Previous slide');
-  prev.innerHTML = '<span class="icon icon-chevron-left"></span>';
-
-  const next = document.createElement('button');
-  next.className = 'hero-arrow hero-next';
-  next.setAttribute('aria-label', 'Next slide');
-  next.innerHTML = '<span class="icon icon-chevron-right"></span>';
 
   const dots = document.createElement('div');
   dots.className = 'hero-dots';
@@ -50,6 +41,16 @@ export default function decorate(block) {
     dots.append(dot);
   });
 
+  const prev = document.createElement('button');
+  prev.className = 'hero-arrow hero-prev';
+  prev.setAttribute('aria-label', 'Previous slide');
+  prev.innerHTML = '<span class="icon icon-chevron-left"></span>';
+
+  const next = document.createElement('button');
+  next.className = 'hero-arrow hero-next';
+  next.setAttribute('aria-label', 'Next slide');
+  next.innerHTML = '<span class="icon icon-chevron-right"></span>';
+
   prev.addEventListener('click', () => {
     const current = Number(block.dataset.activeSlide);
     goToSlide(block, (current - 1 + rows.length) % rows.length);
@@ -59,7 +60,11 @@ export default function decorate(block) {
     goToSlide(block, (current + 1) % rows.length);
   });
 
-  controls.append(prev, dots, next);
+  const arrows = document.createElement('div');
+  arrows.className = 'hero-arrows';
+  arrows.append(prev, next);
+
+  controls.append(dots, arrows);
   block.append(controls);
 
   import('../../scripts/aem.js').then(({ decorateIcons }) => decorateIcons(controls));

@@ -1,6 +1,8 @@
 /*
- * No webfont is vendored — the reference's real font could not be confirmed
- * (no computed-style/network access to the live site), so this project
- * intentionally uses the system-ui stack from styles.css instead of
- * guessing a look-alike webfont. See docs/component-registry.md.
+ * Real fonts, matching wknd.site's actual computed font-family values
+ * (measured directly via computed-style inspection, not guessed): body/UI
+ * copy uses Source Sans Pro, headings use Asar (a serif). Both are
+ * open-license Google Fonts. The stylesheet itself is linked directly from
+ * head.html rather than @import'd here, so discovery doesn't wait on this
+ * file's own round-trip — see docs/component-registry.md.
  */

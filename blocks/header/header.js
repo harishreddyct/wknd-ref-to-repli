@@ -12,9 +12,6 @@ function setMenuExpanded(nav, navToggle, expanded) {
 export default async function decorate(block) {
   const resp = await fetch(NAV_PATH);
   const html = await resp.text();
-  const nav = document.createElement('nav');
-  nav.id = 'nav';
-  nav.setAttribute('aria-expanded', 'false');
 
   // The fetched fragment is authoring content (a flat <div>: brand <p>, a
   // <ul> of primary links, then trailing <p> tool links) rather than
@@ -29,8 +26,8 @@ export default async function decorate(block) {
   brand.className = 'nav-brand';
   const sections = document.createElement('div');
   sections.className = 'nav-sections';
-  const tools = document.createElement('div');
-  tools.className = 'nav-tools';
+  const utility = document.createElement('div');
+  utility.className = 'nav-utility';
 
   let sawList = false;
   children.forEach((child) => {
@@ -38,7 +35,7 @@ export default async function decorate(block) {
       sawList = true;
       sections.append(child);
     } else if (sawList) {
-      tools.append(child);
+      utility.append(child);
     } else {
       brand.append(child);
     }
@@ -47,11 +44,32 @@ export default async function decorate(block) {
   // Authoring round-trips (DA) don't preserve custom classes on <a>/<div>
   // (only recognized block-name classes and "icon icon-x" spans survive),
   // so the region/sign-in styling hooks are assigned by position instead.
-  const toolLinks = [...tools.querySelectorAll('a')];
-  if (toolLinks[0]) toolLinks[0].classList.add('nav-region');
-  if (toolLinks[1]) toolLinks[1].classList.add('nav-signin');
+  const utilityLinks = [...utility.querySelectorAll('a')];
+  if (utilityLinks[0]) utilityLinks[0].classList.add('nav-signin');
+  if (utilityLinks[1]) utilityLinks[1].classList.add('nav-region');
 
-  nav.append(brand, sections, tools);
+  sections.querySelectorAll('a').forEach((a) => {
+    const linkPath = new URL(a.href, window.location.href).pathname;
+    const current = window.location.pathname;
+    const isActive = linkPath === '/' ? current === '/' : current.startsWith(linkPath);
+    if (isActive) a.setAttribute('aria-current', 'page');
+  });
+
+  const search = document.createElement('div');
+  search.className = 'nav-search';
+  search.innerHTML = '<span class="icon icon-search"></span><input type="search" placeholder="Search" aria-label="Search">';
+
+  const utilityBar = document.createElement('div');
+  utilityBar.className = 'nav-utility-bar';
+  utilityBar.append(utility);
+
+  const mainBar = document.createElement('div');
+  mainBar.className = 'nav-main-bar';
+  mainBar.append(brand, sections, search);
+
+  const nav = document.createElement('nav');
+  nav.id = 'nav';
+  nav.setAttribute('aria-expanded', 'false');
 
   const navToggle = document.createElement('button');
   navToggle.className = 'nav-hamburger';
@@ -63,13 +81,15 @@ export default async function decorate(block) {
     const expanded = nav.getAttribute('aria-expanded') === 'true';
     setMenuExpanded(nav, navToggle, !expanded);
   });
-  nav.prepend(navToggle);
+  mainBar.prepend(navToggle);
 
   window.addEventListener('keydown', (e) => {
     if (e.code === 'Escape' && nav.getAttribute('aria-expanded') === 'true') {
       setMenuExpanded(nav, navToggle, false);
     }
   });
+
+  nav.append(utilityBar, mainBar);
 
   const wrapper = document.createElement('div');
   wrapper.className = 'nav-wrapper';
