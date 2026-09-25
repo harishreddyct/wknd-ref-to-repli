@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Placeholder image: ridge line vista">
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#1a3c34"/>
+    <stop offset="1" stop-color="#2e5d50"/>
+  </linearGradient>
+  <rect width="1600" height="900" fill="url(#sky)"/><polygon points="0,670 352,540 640,610 927.9999999999999,520 1280,620 1600,660 1600,900 0,900" fill="rgba(255,255,255,0.14)"/>
+  <polygon points="0,720 480,630 800,690 1200,600 1600,690 1600,900 0,900" fill="rgba(255,255,255,0.22)"/>
+  <text x="50%" y="878" text-anchor="middle" font-family="sans-serif" font-size="32" fill="rgba(255,255,255,0.85)">Placeholder — ridge line vista</text>
+</svg>

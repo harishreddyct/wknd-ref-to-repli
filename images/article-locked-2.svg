@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Placeholder image: locked members-only story">
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#124559"/>
+    <stop offset="1" stop-color="#1c6e8c"/>
+  </linearGradient>
+  <rect width="800" height="600" fill="url(#sky)"/><path d="M0 432 Q 100 408 200 432 T 400 432 T 600 432 T 800 432 V 600 H 0 Z" fill="rgba(255,255,255,0.16)"/><path d="M0 458 Q 100 434 200 458 T 400 458 T 600 458 T 800 458 V 600 H 0 Z" fill="rgba(255,255,255,0.24)"/><path d="M0 484 Q 100 460 200 484 T 400 484 T 600 484 T 800 484 V 600 H 0 Z" fill="rgba(255,255,255,0.32)"/><g fill="rgba(255,255,255,0.45)"><ellipse cx="440.00000000000006" cy="368.00000000000006" rx="40" ry="16"/><polygon points="480.00000000000006,368.00000000000006 500.00000000000006,353.00000000000006 500.00000000000006,383.00000000000006"/></g>
+  <text x="50%" y="578" text-anchor="middle" font-family="sans-serif" font-size="16" fill="rgba(255,255,255,0.85)">Placeholder — locked members-only story</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Placeholder image: dawn patrol surfers">
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#124559"/>
+    <stop offset="1" stop-color="#1c6e8c"/>
+  </linearGradient>
+  <rect width="800" height="600" fill="url(#sky)"/><path d="M0 432 Q 100 408 200 432 T 400 432 T 600 432 T 800 432 V 600 H 0 Z" fill="rgba(255,255,255,0.16)"/><path d="M0 458 Q 100 434 200 458 T 400 458 T 600 458 T 800 458 V 600 H 0 Z" fill="rgba(255,255,255,0.24)"/><path d="M0 484 Q 100 460 200 484 T 400 484 T 600 484 T 800 484 V 600 H 0 Z" fill="rgba(255,255,255,0.32)"/><circle cx="624" cy="144" r="54" fill="rgba(255,255,255,0.5)"/>
+  <text x="50%" y="578" text-anchor="middle" font-family="sans-serif" font-size="16" fill="rgba(255,255,255,0.85)">Placeholder — dawn patrol surfers</text>
+</svg>

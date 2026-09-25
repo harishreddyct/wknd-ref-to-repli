@@ -1,0 +1,140 @@
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header {
+  height: var(--nav-height);
+}
+
+.nav-wrapper {
+  height: 100%;
+}
+
+#nav {
+  height: 100%;
+  max-width: var(--wrapper-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-s);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+}
+
+.nav-brand p {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.nav-brand a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.nav-hamburger {
+  order: -1;
+  border: 0;
+  background: none;
+  padding: 0.5rem;
+  color: var(--color-text);
+  display: inline-flex;
+}
+
+.nav-hamburger .icon img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.nav-sections {
+  position: fixed;
+  inset: var(--nav-height) 0 0 0;
+  background: var(--color-bg);
+  overflow-y: auto;
+  padding: var(--spacing-s);
+  transform: translateX(-100%);
+  transition: transform 0.2s ease;
+}
+
+#nav[aria-expanded='true'] .nav-sections {
+  transform: translateX(0);
+}
+
+.nav-sections ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+}
+
+.nav-sections a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.nav-tools {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .nav-hamburger {
+    display: none;
+  }
+
+  .nav-sections {
+    position: static;
+    inset: unset;
+    transform: none;
+    padding: 0;
+    background: none;
+    overflow: visible;
+    flex: 1;
+  }
+
+  .nav-sections ul {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--spacing-m);
+  }
+
+  .nav-sections a {
+    font-size: var(--font-size-body);
+  }
+
+  .nav-tools {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-m);
+  }
+
+  .nav-tools p {
+    margin: 0;
+  }
+
+  .nav-region {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: var(--font-size-small);
+  }
+
+  .nav-region .icon img {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .nav-signin {
+    text-decoration: none;
+    font-weight: 600;
+  }
+}

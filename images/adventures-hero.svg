@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="700" viewBox="0 0 1600 700" role="img" aria-label="Placeholder image: hiker on a bushland trail">
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#1a3c34"/>
+    <stop offset="1" stop-color="#2e5d50"/>
+  </linearGradient>
+  <rect width="1600" height="700" fill="url(#sky)"/><polygon points="0,530 352,399.99999999999994 640,469.99999999999994 927.9999999999999,379.99999999999994 1280,479.99999999999994 1600,520 1600,700 0,700" fill="rgba(255,255,255,0.14)"/>
+  <polygon points="0,580 480,489.99999999999994 800,550 1200,459.99999999999994 1600,550 1600,700 0,700" fill="rgba(255,255,255,0.22)"/>
+  <text x="50%" y="678" text-anchor="middle" font-family="sans-serif" font-size="32" fill="rgba(255,255,255,0.85)">Placeholder — hiker on a bushland trail</text>
+</svg>

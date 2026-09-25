@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Placeholder image: coastline at sunset">
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#124559"/>
+    <stop offset="1" stop-color="#1c6e8c"/>
+  </linearGradient>
+  <rect width="1200" height="800" fill="url(#sky)"/><path d="M0 576 Q 150 552 300 576 T 600 576 T 900 576 T 1200 576 V 800 H 0 Z" fill="rgba(255,255,255,0.16)"/><path d="M0 602 Q 150 578 300 602 T 600 602 T 900 602 T 1200 602 V 800 H 0 Z" fill="rgba(255,255,255,0.24)"/><path d="M0 628 Q 150 604 300 628 T 600 628 T 900 628 T 1200 628 V 800 H 0 Z" fill="rgba(255,255,255,0.32)"/><circle cx="936" cy="192" r="72" fill="rgba(255,255,255,0.5)"/>
+  <text x="50%" y="778" text-anchor="middle" font-family="sans-serif" font-size="24" fill="rgba(255,255,255,0.85)">Placeholder — coastline at sunset</text>
+</svg>

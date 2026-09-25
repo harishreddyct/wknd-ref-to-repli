@@ -1,0 +1,20 @@
+/*
+ * Below-the-fold styling, fetched by scripts.js after the eager render —
+ * never linked from <head>. See AGENTS.md.
+ */
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.section.divider > div {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-l);
+}
+
+@media print {
+  header, footer, .breadcrumbs {
+    display: none;
+  }
+}

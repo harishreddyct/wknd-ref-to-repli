@@ -1,0 +1,45 @@
+.team {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-l);
+  text-align: center;
+}
+
+.team-member-photo img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 999px;
+  object-fit: cover;
+  margin: 0 auto var(--spacing-xs);
+}
+
+.team-member-body h3 {
+  font-size: var(--font-size-h4);
+  margin-bottom: 0.2em;
+}
+
+.team-member-body p {
+  color: var(--color-text-muted);
+  margin-bottom: 0.4em;
+}
+
+.team-member-body a {
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .team {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .team {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .team.guides {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

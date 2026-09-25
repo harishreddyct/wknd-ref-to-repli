@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Placeholder image: road trip landscape">
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#a9713c"/>
+    <stop offset="1" stop-color="#c98f52"/>
+  </linearGradient>
+  <rect width="1200" height="800" fill="url(#sky)"/><g transform="translate(432,522)" fill="rgba(255,255,255,0.5)">
+    <rect x="0" y="20" width="150" height="60" rx="8"/>
+    <rect x="0" y="0" width="60" height="30" rx="6"/>
+    <circle cx="34" cy="82" r="14" fill="rgba(0,0,0,0.25)"/>
+    <circle cx="120" cy="82" r="14" fill="rgba(0,0,0,0.25)"/>
+  </g><polygon points="0,600 264,470 480,540 696,450 960,550 1200,590 1200,800 0,800" fill="rgba(255,255,255,0.14)"/>
+  <polygon points="0,650 360,560 600,620 900,530 1200,620 1200,800 0,800" fill="rgba(255,255,255,0.22)"/>
+  <text x="50%" y="778" text-anchor="middle" font-family="sans-serif" font-size="24" fill="rgba(255,255,255,0.85)">Placeholder — road trip landscape</text>
+</svg>

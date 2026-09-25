@@ -1,0 +1,5 @@
+docs/
+tools/
+web-dev-server.config.mjs
+*.md
+!README.md

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Placeholder image: vineyard and village tour">
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#4c3b57"/>
+    <stop offset="1" stop-color="#7a5c8a"/>
+  </linearGradient>
+  <rect width="800" height="600" fill="url(#sky)"/><line x1="0" y1="420" x2="800" y2="380" stroke="rgba(255,255,255,0.18)" stroke-width="4"/><line x1="0" y1="434" x2="800" y2="394" stroke="rgba(255,255,255,0.18)" stroke-width="4"/><line x1="0" y1="448" x2="800" y2="408" stroke="rgba(255,255,255,0.18)" stroke-width="4"/><line x1="0" y1="462" x2="800" y2="422" stroke="rgba(255,255,255,0.18)" stroke-width="4"/><line x1="0" y1="476" x2="800" y2="436" stroke="rgba(255,255,255,0.18)" stroke-width="4"/><line x1="0" y1="490" x2="800" y2="450" stroke="rgba(255,255,255,0.18)" stroke-width="4"/>
+  <text x="50%" y="578" text-anchor="middle" font-family="sans-serif" font-size="16" fill="rgba(255,255,255,0.85)">Placeholder — vineyard and village tour</text>
+</svg>
