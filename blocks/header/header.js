@@ -14,15 +14,44 @@ export default async function decorate(block) {
   const html = await resp.text();
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  nav.innerHTML = html;
   nav.setAttribute('aria-expanded', 'false');
 
-  const brand = nav.querySelector('.nav-brand');
-  const sections = nav.querySelector('.nav-sections');
-  const tools = nav.querySelector('.nav-tools');
-  if (brand) brand.className = 'nav-brand';
-  if (sections) sections.className = 'nav-sections';
-  if (tools) tools.className = 'nav-tools';
+  // The fetched fragment is authoring content (a flat <div>: brand <p>, a
+  // <ul> of primary links, then trailing <p> tool links) rather than
+  // pre-classed markup — DA's authoring round-trip does not preserve
+  // custom-class wrapper divs, so structure is rebuilt here by content
+  // shape instead of by class name.
+  const temp = document.createElement('div');
+  temp.innerHTML = html;
+  const children = [...(temp.firstElementChild || temp).children];
+
+  const brand = document.createElement('div');
+  brand.className = 'nav-brand';
+  const sections = document.createElement('div');
+  sections.className = 'nav-sections';
+  const tools = document.createElement('div');
+  tools.className = 'nav-tools';
+
+  let sawList = false;
+  children.forEach((child) => {
+    if (child.tagName === 'UL') {
+      sawList = true;
+      sections.append(child);
+    } else if (sawList) {
+      tools.append(child);
+    } else {
+      brand.append(child);
+    }
+  });
+
+  // Authoring round-trips (DA) don't preserve custom classes on <a>/<div>
+  // (only recognized block-name classes and "icon icon-x" spans survive),
+  // so the region/sign-in styling hooks are assigned by position instead.
+  const toolLinks = [...tools.querySelectorAll('a')];
+  if (toolLinks[0]) toolLinks[0].classList.add('nav-region');
+  if (toolLinks[1]) toolLinks[1].classList.add('nav-signin');
+
+  nav.append(brand, sections, tools);
 
   const navToggle = document.createElement('button');
   navToggle.className = 'nav-hamburger';
