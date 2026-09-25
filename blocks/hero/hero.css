@@ -25,7 +25,10 @@
   object-fit: cover;
 }
 
-.hero-slide > div:last-child {
+/* text-overlay cell only — a slide with just an image (no caption) has a
+   single child (its image wrapper) that must stay in normal flow, or the
+   slide collapses to zero height */
+.hero-slide > div:last-child:not(:first-child) {
   position: absolute;
   inset: 0;
   display: flex;
@@ -46,7 +49,7 @@
   max-width: 40ch;
 }
 
-.hero-static .hero-slide > div:last-child {
+.hero-static .hero-slide > div:last-child:not(:first-child) {
   justify-content: flex-end;
   padding-bottom: var(--spacing-l);
 }
