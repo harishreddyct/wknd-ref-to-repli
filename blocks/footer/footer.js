@@ -46,6 +46,13 @@ export default async function decorate(block) {
     }
   });
 
+  // The DA authoring round-trip strips non-standard attributes (including
+  // aria-label) from bare links, not just custom classes — added here
+  // instead of relying on it surviving from the authored fragment.
+  social.querySelectorAll('ul a').forEach((a) => {
+    a.setAttribute('aria-label', 'Follow WKND Adventures (placeholder link)');
+  });
+
   const wrapper = document.createElement('div');
   wrapper.className = 'footer-wrapper';
   const row = document.createElement('div');
