@@ -88,7 +88,19 @@
     font-size: var(--font-size-h1);
   }
 
+  /* the caption card climbs up over the bottom of the hero photo instead of
+     sitting fully below it, once there's room for the two to overlap */
+  .hero-slide {
+    position: relative;
+  }
+
   .hero-slide > div:last-child:not(:first-child) {
-    padding: var(--spacing-l) var(--spacing-m) 0;
+    position: relative;
+    z-index: 1;
+    margin-top: -12rem;
+    margin-left: var(--spacing-m);
+    max-width: 30rem;
+    padding: var(--spacing-l);
+    background: var(--color-bg);
   }
 }
