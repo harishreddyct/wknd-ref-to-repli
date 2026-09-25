@@ -29,9 +29,20 @@ async function waitForLCP(main) {
   }
 }
 
+function addSkipLink(doc) {
+  const link = document.createElement('a');
+  link.className = 'skip-link';
+  link.href = '#main';
+  link.textContent = 'Skip to content';
+  doc.body.prepend(link);
+  const main = doc.querySelector('main');
+  if (main && !main.id) main.id = 'main';
+}
+
 async function loadEager(doc) {
   document.documentElement.lang = document.documentElement.lang || 'en';
   decorateTemplateAndTheme();
+  addSkipLink(doc);
 
   const main = doc.querySelector('main');
   if (main) {

@@ -1,6 +1,9 @@
 /*
  * Category filter buttons for the adventures grid. Authoring shape: one
- * row of category names as plain text; the block builds buttons from it.
+ * row per category, each holding a div cell with its label — not plain
+ * comma-separated text, because the DA authoring round-trip only
+ * preserves a block's wrapper class when its rows are div-cell shaped
+ * (see blocks/breadcrumbs/breadcrumbs.js for the same constraint).
  * Expects a sibling ".cards" block later in the same section to filter.
  */
 function applyFilter(section, category) {
@@ -12,10 +15,7 @@ function applyFilter(section, category) {
 }
 
 export default function decorate(block) {
-  const categories = block.textContent
-    .split(',')
-    .map((c) => c.trim())
-    .filter(Boolean);
+  const categories = [...block.children].map((row) => row.textContent.trim()).filter(Boolean);
   block.textContent = '';
 
   const list = document.createElement('div');
