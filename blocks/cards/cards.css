@@ -98,6 +98,11 @@
     flex: 3 1 0%;
   }
 
+  .cards.feature .cards-card-image,
+  .cards.feature .cards-card-image picture {
+    height: 100%;
+  }
+
   .cards.feature .cards-card-image img {
     height: 100%;
     aspect-ratio: auto;
