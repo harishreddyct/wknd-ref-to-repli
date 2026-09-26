@@ -33,7 +33,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  margin-bottom: 0.5em;
+  margin: 0.5em 0;
 }
 
 .cards-card-body h3 a {

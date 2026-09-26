@@ -80,7 +80,7 @@ main {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   line-height: var(--line-height-heading);
-  margin: 0 0 var(--spacing-s);
+  margin: 1.6875rem 0 0.8438rem;
   font-weight: 400;
 }
 
@@ -217,6 +217,20 @@ button, .button {
 
 .section.narrow > div {
   max-width: 800px;
+}
+
+/* prose paragraphs (article bodies, FAQ answers) get a noticeably more
+   generous line-height than grid/card copy elsewhere on the site */
+.section.narrow p {
+  line-height: 2.5;
+  margin-bottom: 0.8438rem;
+}
+
+/* FAQ question headings sit flush against their answer, with no extra
+   heading margin of their own (spacing comes from the answer's own
+   margin-bottom instead) */
+.section.narrow h3 {
+  margin: 0;
 }
 
 /* skip link */
