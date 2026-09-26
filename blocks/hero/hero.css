@@ -109,12 +109,16 @@
     position: relative;
   }
 
+  /* fixed width, not fluid — confirmed identical (1192px) at every width
+     from 1200px up to 1920px, centered on the page rather than scaling
+     with the viewport */
   .hero-slide > div:last-child:not(:first-child) {
     position: relative;
     z-index: 1;
     margin-top: -2rem;
-    margin-left: 0.25rem;
-    margin-right: 0.25rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 74.5rem;
     padding: 0 1.75rem;
     background: var(--color-bg);
   }

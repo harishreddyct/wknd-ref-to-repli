@@ -223,8 +223,11 @@ button, .button {
 }
 
 .section:has(> .hero-wrapper) > .hero-wrapper {
-  max-width: none;
-  margin: 0;
+  /* full-bleed up to this cap, then centers with equal margins beyond it —
+     confirmed identical (1680px) at two different wide viewports, not an
+     assumption */
+  max-width: 105rem;
+  margin: 0 auto;
 }
 
 /* space out a heading/paragraph that follows a block within the same section */
