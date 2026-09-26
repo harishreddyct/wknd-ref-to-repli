@@ -69,7 +69,7 @@
 }
 
 .cards.feature .cards-card-body h2 {
-  margin-top: 0;
+  margin: 0.5em 0;
 }
 
 .cards.feature .cards-card-body > p:first-child {

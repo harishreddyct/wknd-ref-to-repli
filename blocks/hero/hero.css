@@ -35,6 +35,7 @@
   color: var(--color-text);
   font-size: var(--font-size-h2);
   line-height: var(--line-height-heading);
+  margin-top: 0.5em;
 }
 
 
