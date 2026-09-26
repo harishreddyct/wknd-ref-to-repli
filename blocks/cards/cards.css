@@ -69,7 +69,6 @@
 
 .cards.feature .cards-card {
   flex-direction: column;
-  background: var(--color-bg-alt);
 }
 
 .cards.feature .cards-card-body h2 {
