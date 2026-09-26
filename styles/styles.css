@@ -177,6 +177,14 @@ button, .button {
    paragraph margins alone, not section padding */
 .section {
   padding: 0 0.875rem;
+
+  /* with zero vertical padding, a first-child heading's margin-top would
+     otherwise collapse straight through this box and the gap would show
+     up *before* the section instead of inside it, right above the
+     heading — confirmed by direct measurement (section-top and heading-
+     top landed on the exact same pixel, i.e. the margin had already
+     escaped upward). A new block-formatting context contains it. */
+  display: flow-root;
 }
 
 .section > div {
