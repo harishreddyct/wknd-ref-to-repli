@@ -93,7 +93,6 @@ h4, h5, h6 { font-size: var(--font-size-h4); }
 .section > div > h1:first-child, .section > div > h2:first-child {
   position: relative;
   padding-bottom: var(--spacing-s);
-  margin-bottom: var(--spacing-m);
 }
 
 .section > div > h1:first-child::after,
