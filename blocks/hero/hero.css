@@ -91,9 +91,12 @@
   height: 1.5rem;
 }
 
+/* the caption card climbs up over the bottom of the hero photo instead of
+   sitting fully below it, once there's room for the two to overlap — the
+   overlap amount grows with viewport width on the reference (measured
+   ~32px at 768px, ~140px at 960px, ~180px at 1200px), not a constant, so
+   it's stepped per breakpoint tier rather than a single fixed value */
 @media (min-width: 768px) {
-  /* the caption card climbs up over the bottom of the hero photo instead of
-     sitting fully below it, once there's room for the two to overlap */
   .hero-slide {
     position: relative;
   }
@@ -101,10 +104,22 @@
   .hero-slide > div:last-child:not(:first-child) {
     position: relative;
     z-index: 1;
-    margin-top: -12rem;
+    margin-top: -2rem;
     margin-left: 0.25rem;
     margin-right: 0.25rem;
     padding: 0 1.75rem;
     background: var(--color-bg);
+  }
+}
+
+@media (min-width: 960px) {
+  .hero-slide > div:last-child:not(:first-child) {
+    margin-top: -8.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-slide > div:last-child:not(:first-child) {
+    margin-top: -11.25rem;
   }
 }

@@ -87,6 +87,7 @@
 
 .cards.feature .cards-card-body {
   padding: var(--spacing-m);
+  background: #ebebeb;
 }
 
 @media (min-width: 768px) {
