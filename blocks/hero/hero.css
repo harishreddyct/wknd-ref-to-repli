@@ -25,9 +25,11 @@
 }
 
 /* homepage-only "teaser" style: a slide with real content renders it below
-   the image, in normal flow, not overlaid */
+   the image, in normal flow, not overlaid. No padding here — confirmed
+   zero on the reference at every width; the heading's own margin-top is
+   the only spacing above it */
 .hero-slide > div:last-child:not(:first-child) {
-  padding: var(--spacing-l) var(--spacing-s) 0;
+  padding: 0 var(--spacing-s);
 }
 
 .hero-slide h1,
@@ -36,6 +38,11 @@
   font-size: var(--font-size-h2);
   line-height: var(--line-height-heading);
   margin-top: 0.5em;
+}
+
+.hero-slide p {
+  line-height: 1.75;
+  margin-bottom: 0;
 }
 
 
