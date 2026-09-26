@@ -17,9 +17,6 @@
     "@adobe/aem-cli": "16.21.21",
     "eslint": "8.57.0",
     "stylelint": "16.9.0",
-    "stylelint-config-standard": "36.0.1",
-    "playwright": "1.48.0",
-    "lighthouse": "12.2.1",
-    "chrome-launcher": "1.1.2"
+    "stylelint-config-standard": "36.0.1"
   }
 }
