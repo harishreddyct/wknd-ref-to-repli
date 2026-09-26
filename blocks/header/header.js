@@ -96,4 +96,9 @@ export default async function decorate(block) {
   wrapper.append(nav);
   block.append(wrapper);
   await decorateIcons(block);
+
+  // decorateIcons() defaults every icon to alt="" (right for decorative
+  // icons, wrong for the logo, which is the only content inside its link)
+  const logo = brand.querySelector('img[data-icon-name^="wknd-logo"]');
+  if (logo) logo.alt = 'WKND';
 }

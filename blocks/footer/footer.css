@@ -34,15 +34,17 @@ footer {
 
 .footer-brand p {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 .footer-brand a {
+  display: inline-block;
   color: #fff;
   text-decoration: none;
+}
+
+.footer-brand img {
+  width: 8rem;
+  height: auto;
 }
 
 .footer-sections ul {

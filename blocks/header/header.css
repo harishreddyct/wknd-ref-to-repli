@@ -87,20 +87,17 @@ header {
 
 .nav-brand p {
   margin: 0;
-  font-size: 1.375rem;
-  font-weight: 400;
-  letter-spacing: 0.01em;
 }
 
 .nav-brand a {
+  display: inline-block;
   color: var(--color-text);
   text-decoration: none;
 }
 
-.nav-brand strong {
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+.nav-brand img {
+  width: 6rem;
+  height: auto;
 }
 
 .nav-hamburger {
