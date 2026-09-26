@@ -40,7 +40,6 @@
   --spacing-s: 1rem;
   --spacing-m: 1.5rem;
   --spacing-l: 2.5rem;
-  --spacing-xl: 4rem;
 
   --nav-height: 4.5rem;
   --utility-bar-height: 2.25rem;
@@ -172,8 +171,12 @@ button, .button {
   margin: var(--spacing-s) 0;
 }
 
+/* no vertical padding here — confirmed directly against the reference:
+   every section's own ancestor chain has zero padding-top/bottom at every
+   breakpoint. All vertical rhythm between sections comes from heading and
+   paragraph margins alone, not section padding */
 .section {
-  padding: var(--spacing-l) var(--spacing-s);
+  padding: 0 0.875rem;
 }
 
 .section > div {
@@ -181,9 +184,9 @@ button, .button {
   margin: 0 auto;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .section {
-    padding: var(--spacing-xl) var(--spacing-m);
+    padding: 0 2rem;
   }
 }
 
@@ -199,7 +202,6 @@ button, .button {
 .section:has(> .hero-wrapper) {
   padding-left: 0;
   padding-right: 0;
-  padding-top: 0;
 }
 
 .section:has(> .hero-wrapper) > .hero-wrapper {
