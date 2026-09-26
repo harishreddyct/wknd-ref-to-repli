@@ -1,12 +1,19 @@
+/* a fixed card width that wraps fluidly to however many fit per row,
+   matching the reference's actual behavior (card images stay a constant
+   260px-ish wide at every viewport — the *column count* is what changes,
+   not the card size) rather than a fixed column-count grid that stretches
+   cards to fill the container */
 .cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-l) var(--spacing-m);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-m) 0.875rem;
 }
 
 .cards-card {
   display: flex;
   flex-direction: column;
+  flex: 0 0 17.125rem;
+  width: 17.125rem;
 }
 
 .cards-card-image img {
@@ -50,25 +57,15 @@
   display: none;
 }
 
-@media (min-width: 768px) {
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 960px) {
-  .cards {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* feature variant: single large horizontal card */
-.cards.feature {
-  grid-template-columns: 1fr;
-}
-
+/* feature variant: single large horizontal card, full row width */
 .cards.feature .cards-card {
   flex-direction: column;
+  flex-basis: 100%;
+  width: auto;
+}
+
+.cards.feature .cards-card-image img {
+  aspect-ratio: 16 / 9;
 }
 
 .cards.feature .cards-card-body h2 {
@@ -116,13 +113,14 @@
 }
 
 /* locked variant: members-only teaser */
-.cards.locked {
-  grid-template-columns: 1fr;
+.cards.locked .cards-card {
+  flex-basis: 100%;
+  width: auto;
 }
 
 @media (min-width: 768px) {
-  .cards.locked {
-    grid-template-columns: repeat(2, 1fr);
+  .cards.locked .cards-card {
+    flex-basis: calc(50% - 0.4375rem);
   }
 }
 

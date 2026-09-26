@@ -18,8 +18,8 @@
 .hero-slide picture,
 .hero-slide img {
   width: 100%;
-  height: 60vh;
-  min-height: 320px;
+  height: auto;
+  aspect-ratio: 16 / 9;
   max-height: 640px;
   object-fit: cover;
 }
@@ -34,6 +34,8 @@
 .hero-slide h1,
 .hero-slide h2 {
   color: var(--color-text);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-heading);
 }
 
 .hero-slide p {
@@ -94,10 +96,6 @@
 }
 
 @media (min-width: 768px) {
-  .hero-slide h1 {
-    font-size: var(--font-size-h1);
-  }
-
   /* the caption card climbs up over the bottom of the hero photo instead of
      sitting fully below it, once there's room for the two to overlap */
   .hero-slide {
