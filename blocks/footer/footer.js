@@ -50,7 +50,7 @@ export default async function decorate(block) {
   // aria-label) from bare links, not just custom classes — added here
   // instead of relying on it surviving from the authored fragment.
   social.querySelectorAll('ul a').forEach((a) => {
-    a.setAttribute('aria-label', 'Follow WKND Adventures (placeholder link)');
+    a.setAttribute('aria-label', 'Follow WKND (placeholder link)');
   });
 
   const wrapper = document.createElement('div');

@@ -8,7 +8,28 @@ footer {
   margin: 0 auto;
   padding: var(--spacing-l) var(--spacing-s);
   display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'brand sections'
+    'social social'
+    'legal legal';
   gap: var(--spacing-m);
+}
+
+.footer-brand {
+  grid-area: brand;
+}
+
+.footer-sections {
+  grid-area: sections;
+}
+
+.footer-social {
+  grid-area: social;
+}
+
+.footer-legal {
+  grid-area: legal;
 }
 
 .footer-brand p {
@@ -29,8 +50,8 @@ footer {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-m);
+  flex-direction: column;
+  gap: var(--spacing-s);
 }
 
 .footer-sections a {
@@ -82,29 +103,25 @@ footer {
   color: #9c9c9c;
 }
 
-@media (min-width: 768px) {
+/* the reference keeps brand+nav stacked with the "Follow Us" row full-width
+   below them all the way through tablet, only moving social beside them
+   and the nav list onto one line at a wide desktop width (measured on the
+   reference: the switch happens close to 1024-1100px; this project's
+   fixed 1200px tier is the nearest match) */
+@media (min-width: 1200px) {
   .footer-wrapper > div {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr auto;
     grid-template-areas:
-      'brand social'
-      'sections social'
-      'legal legal';
+      'brand sections social'
+      'legal legal legal';
   }
 
-  .footer-brand {
-    grid-area: brand;
-  }
-
-  .footer-sections {
-    grid-area: sections;
+  .footer-sections ul {
+    flex-flow: row wrap;
+    gap: var(--spacing-m);
   }
 
   .footer-social {
-    grid-area: social;
     justify-self: end;
-  }
-
-  .footer-legal {
-    grid-area: legal;
   }
 }
