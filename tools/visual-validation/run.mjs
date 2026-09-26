@@ -27,9 +27,14 @@ async function run() {
       const name = `${route === '/' ? 'home' : route.replace(/\//g, '_')}_${width}.png`;
       const file = `${OUT_DIR}${name}`;
       // eslint-disable-next-line no-await-in-loop
+      // --wait-for-timeout gives the EDS decoration pipeline (which starts
+      // the page hidden via `body{display:none}` and reveals it with a
+      // `.appear` class once scripts.js finishes) time to run — without it
+      // this reliably screenshots a blank page.
       await execFileAsync('npx', [
         '--yes', 'playwright', 'screenshot',
         `--viewport-size=${width},900`,
+        '--wait-for-timeout=2000',
         '--full-page',
         url, file,
       ]);
