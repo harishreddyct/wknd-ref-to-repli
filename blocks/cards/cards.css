@@ -90,6 +90,13 @@
   background: #ebebeb;
 }
 
+/* reference stacks the feature teaser's text before its image below 768px
+   (DOM order is text-first there too, flipped visually to image-left via
+   row-reverse at desktop) — order:1 reproduces that without reordering the DOM */
+.cards.feature .cards-card-image {
+  order: 1;
+}
+
 @media (min-width: 768px) {
   .cards.feature .cards-card-body p:not(:first-child) {
     font-size: var(--font-size-body);
@@ -103,6 +110,7 @@
 
   .cards.feature .cards-card-image {
     flex: 3 1 0%;
+    order: 0;
   }
 
   .cards.feature .cards-card-image,
@@ -135,8 +143,11 @@
   }
 }
 
+/* reference stacks the locked teaser's badge/title/button before its image
+   at every breakpoint (plain block flow, image is the DOM's second child) */
 .cards.locked .cards-card-image {
   position: relative;
+  order: 1;
 }
 
 .cards.locked .cards-card-image::after {
