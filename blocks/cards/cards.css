@@ -12,8 +12,8 @@
 .cards-card {
   display: flex;
   flex-direction: column;
-  flex: 0 0 17.125rem;
-  width: 17.125rem;
+  flex: 0 0 16.25rem;
+  width: 16.25rem;
 }
 
 .cards-card-image img {
@@ -94,9 +94,8 @@
     flex-direction: row;
   }
 
-  .cards.feature .cards-card-image,
-  .cards.feature .cards-card-body {
-    flex: 1;
+  .cards.feature .cards-card-image {
+    flex: 3 1 0%;
   }
 
   .cards.feature .cards-card-image img {
@@ -105,6 +104,7 @@
   }
 
   .cards.feature .cards-card-body {
+    flex: 2 1 0%;
     display: flex;
     flex-direction: column;
     justify-content: center;
