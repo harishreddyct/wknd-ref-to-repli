@@ -227,3 +227,9 @@ header {
     width: 12rem;
   }
 }
+
+@media (min-width: 1200px) {
+  .nav-brand img {
+    width: 8rem;
+  }
+}

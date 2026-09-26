@@ -41,8 +41,18 @@
   --spacing-m: 1.5rem;
   --spacing-l: 2.5rem;
 
-  --nav-height: 4.5rem;
-  --utility-bar-height: 2.25rem;
+  --nav-height: 5.75rem;
+  --utility-bar-height: 1.5625rem;
+}
+
+/* the header nearly doubles in height at this project's top breakpoint
+   tier — confirmed by measuring header height and logo size at every
+   width from 375 to 1440: both are constant below 1200px, then jump
+   together (117px to 194px total height, 96px to 128px logo) */
+@media (min-width: 1200px) {
+  :root {
+    --nav-height: 10.5625rem;
+  }
 }
 
 * {
