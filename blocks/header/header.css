@@ -45,7 +45,6 @@ header {
   text-decoration: none;
   font-size: var(--font-size-small);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 .nav-region {
@@ -188,7 +187,6 @@ header {
   font-family: var(--font-body);
   font-size: var(--font-size-small);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 @media (min-width: 960px) {

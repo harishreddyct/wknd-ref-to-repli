@@ -15,10 +15,9 @@
 }
 
 .breadcrumbs li {
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--color-text-muted);
+  color: var(--color-text);
 }
 
 .breadcrumbs li:not(:last-child)::after {
@@ -33,14 +32,10 @@
 }
 
 .breadcrumbs a {
-  color: var(--color-text-muted);
+  color: var(--color-text);
   text-decoration: none;
 }
 
 .breadcrumbs a:hover {
-  color: var(--color-text);
-}
-
-.breadcrumbs [aria-current='page'] {
-  color: var(--color-text);
+  text-decoration: underline;
 }

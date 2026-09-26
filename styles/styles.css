@@ -156,7 +156,6 @@ button, .button {
   cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
