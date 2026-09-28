@@ -240,6 +240,23 @@ button, .button {
   max-width: 800px;
 }
 
+/* authored page-bottom divider. The reference ends *some* pages (the
+   adventures listing and the magazine articles — not home/faqs/about-us)
+   with a thin content-width rule between the last content and the footer
+   gap. It's an authored "separator" component there, so it's reproduced as
+   a per-section style applied only on those pages, never added globally.
+   Colour is the reference's #ebebeb (== --color-dark-text); spacing below
+   the last content mirrors the reference's separation before the rule. The
+   rule sits on the centred content wrapper (not the full-width section) so
+   it stays content-width on viewports wider than the wrapper, as it is on
+   the reference. Only the section's last content wrapper carries the rule —
+   a separator section can hold several wrappers (heading + filters + cards),
+   and the divider belongs at the very bottom, not under each one. */
+.section.separator > div:last-child {
+  padding-bottom: var(--spacing-l);
+  border-bottom: 1px solid var(--color-dark-text);
+}
+
 /* prose paragraphs (article bodies, FAQ answers) get a noticeably more
    generous line-height than grid/card copy elsewhere on the site */
 .section.narrow p,

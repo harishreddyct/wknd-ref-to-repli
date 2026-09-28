@@ -1,6 +1,13 @@
 footer {
   background: var(--color-dark);
   color: var(--color-dark-text);
+
+  /* the reference separates the dark footer from the last page content with a
+     fixed gap on every page (measured: footer margin-top 48px at all
+     breakpoints). Without it the footer sits flush against the content — the
+     only place on the site that relies on section-adjacent margin rather than
+     its own spacing, so it has to be declared here, not on the sections. */
+  margin-top: 3rem;
 }
 
 .footer-wrapper > div {
