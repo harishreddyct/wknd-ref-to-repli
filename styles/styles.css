@@ -114,6 +114,23 @@ h4, h5, h6 { font-size: var(--font-size-h4); }
   border-bottom: 2px solid var(--color-accent);
 }
 
+/* the yellow rule is a per-heading authored treatment in the reference, not an
+   automatic page-title style. Most page-title H1s carry NO rule (Adventures,
+   About Us, Magazine, article titles) — only a few do (FAQs, adventure detail)
+   — and a handful of section H2s are authored without it too ("Experience the
+   world with us"). `plain-title` opts a section's first heading out of the rule,
+   reproducing the reference's actual per-page authoring rather than assuming
+   every first heading is underlined. */
+.section.plain-title > div > h1:first-child::after,
+.section.plain-title > div > h2:first-child::after {
+  content: none;
+}
+
+.section.plain-title > div > h1:first-child,
+.section.plain-title > div > h2:first-child {
+  padding-bottom: 0;
+}
+
 p, ul, ol {
   margin: 0 0 var(--spacing-s);
 }
