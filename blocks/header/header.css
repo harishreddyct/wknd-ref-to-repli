@@ -2,6 +2,23 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+
+  /* the reference header shrinks on scroll (measured 194px -> 114px at
+     desktop): the dark utility bar collapses and the main bar tightens.
+     JS toggles .nav-scrolled past a small scroll threshold; height is
+     animated so the change is smooth rather than a jump. */
+  transition: height 0.2s ease;
+}
+
+/* scrolled state: drop the utility bar (its height) at every width; the
+   main bar then fills the reduced header. */
+header.nav-scrolled {
+  height: var(--nav-height);
+}
+
+header.nav-scrolled .nav-utility-bar {
+  height: 0;
+  overflow: hidden;
 }
 
 .header {
@@ -24,6 +41,8 @@ header {
   background: var(--color-dark);
   color: var(--color-dark-text);
   flex-shrink: 0;
+  overflow: hidden;
+  transition: height 0.2s ease;
 }
 
 .nav-utility {
@@ -229,5 +248,11 @@ header {
 @media (min-width: 1200px) {
   .nav-brand img {
     width: 8rem;
+  }
+
+  /* at desktop the reference shrinks the whole header to ~114px on scroll
+     (not just the utility bar), keeping the logo the same size */
+  header.nav-scrolled {
+    height: 7.125rem;
   }
 }

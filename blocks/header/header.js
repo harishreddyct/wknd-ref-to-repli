@@ -97,6 +97,17 @@ export default async function decorate(block) {
   block.append(wrapper);
   await decorateIcons(block);
 
+  // shrink the header on scroll (reference collapses 194px -> 114px at
+  // desktop): toggle a class past a small threshold and let CSS animate it.
+  const headerEl = block.closest('header') || document.querySelector('header');
+  if (headerEl) {
+    const onScroll = () => {
+      headerEl.classList.toggle('nav-scrolled', window.scrollY > 32);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   // decorateIcons() defaults every icon to alt="" (right for decorative
   // icons, wrong for the logo, which is the only content inside its link)
   const logo = brand.querySelector('img[data-icon-name^="wknd-logo"]');

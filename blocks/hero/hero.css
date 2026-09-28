@@ -24,11 +24,15 @@
   object-fit: cover;
 }
 
-/* homepage-only "teaser" style: a slide with real content renders it below
-   the image, in normal flow, not overlaid. No padding here — confirmed
-   zero on the reference at every width; the heading's own margin-top is
-   the only spacing above it */
+/* "teaser" style: a slide with real content (a second cell) renders that
+   content as the caption. Below 1200px the reference (cmp-teaser__content,
+   margin-top: 0) sits it BELOW the image in normal flow — no overlap — at
+   content width, centered. Zero vertical padding is confirmed on the
+   reference at every width; the heading's own margin-top is the only
+   spacing above it. */
 .hero-slide > div:last-child:not(:first-child) {
+  max-width: 74.5rem;
+  margin: 0 auto;
   padding: 0 var(--spacing-s);
 }
 
@@ -99,39 +103,26 @@
   height: 1.5rem;
 }
 
-/* the caption card climbs up over the bottom of the hero photo instead of
-   sitting fully below it, once there's room for the two to overlap — the
-   overlap amount grows with viewport width on the reference (measured
-   ~32px at 768px, ~140px at 960px, ~180px at 1200px), not a constant, so
-   it's stepped per breakpoint tier rather than a single fixed value */
-@media (min-width: 768px) {
+/* at desktop the caption becomes a white card that climbs fully over the
+   bottom of the hero photo. The reference (cmp-teaser__content) does this
+   ONLY at >=1200px: it pulls up by its own height (margin-top: -180px) and
+   reserves a fixed min-height of 180px, so the text sits at the top of a
+   substantial card with white space below it — not a thin strip hugging
+   the text. Below 1200px the reference has margin-top: 0 (no overlap), so
+   both the overlap and the min-height are scoped to this tier only. The
+   card width is fixed at 1192px (74.5rem), centered, at every width from
+   1200 up to 1920+, not fluid. */
+@media (min-width: 1200px) {
   .hero-slide {
     position: relative;
   }
 
-  /* fixed width, not fluid — confirmed identical (1192px) at every width
-     from 1200px up to 1920px, centered on the page rather than scaling
-     with the viewport */
   .hero-slide > div:last-child:not(:first-child) {
     position: relative;
     z-index: 1;
-    margin-top: -2rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 74.5rem;
+    margin-top: -11.25rem;
+    min-height: 11.25rem;
     padding: 0 1.75rem;
     background: var(--color-bg);
-  }
-}
-
-@media (min-width: 960px) {
-  .hero-slide > div:last-child:not(:first-child) {
-    margin-top: -8.75rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .hero-slide > div:last-child:not(:first-child) {
-    margin-top: -11.25rem;
   }
 }
