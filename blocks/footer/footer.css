@@ -13,6 +13,7 @@ footer {
 .footer-wrapper > div {
   max-width: var(--wrapper-width);
   margin: 0 auto;
+
   /* the reference keeps a clear left/right gutter on the footer content at
      every width (measured left inset ~28px @1024, ~32px @1200, ~44px @1280).
      A fixed 16px gutter made our content hug the screen edges below the
