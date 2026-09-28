@@ -242,9 +242,77 @@ button, .button {
 
 /* prose paragraphs (article bodies, FAQ answers) get a noticeably more
    generous line-height than grid/card copy elsewhere on the site */
-.section.narrow p {
+.section.narrow p,
+.section.faq p {
   line-height: 2.5;
   margin-bottom: 0.8438rem;
+}
+
+/* FAQ page: h1 + banner + intro + accordion on the left, a "Need more help?"
+   panel that stacks below on mobile and moves into a right rail only at the
+   top breakpoint tier — matching the reference's 12-column grid (content =
+   8 cols, help = 3 cols offset by 1). The intro paragraph is justified, as
+   on the reference. */
+.section.faq > .default-content-wrapper:first-child p {
+  text-align: justify;
+}
+
+/* the FAQ banner is a plain inline image filling the content column; set an
+   explicit height:auto alongside its width/height attributes so it keeps its
+   aspect ratio instead of rendering at the raw attribute height (the sized-
+   img quirk noted in docs/component-registry.md) */
+.section.faq > .default-content-wrapper:first-child picture img {
+  width: 100%;
+  height: auto;
+}
+
+/* "Need more help?" panel: the reference renders it a size smaller than a
+   section heading (24px, no yellow underline) with 14px body copy. Kept as
+   an <h2> for gap-free heading order, sized/underline-suppressed here. */
+.section.faq > .default-content-wrapper:last-child h2 {
+  font-size: var(--font-size-h3);
+  padding-bottom: 0;
+}
+
+.section.faq > .default-content-wrapper:last-child h2::after {
+  content: none;
+}
+
+.section.faq > .default-content-wrapper:last-child p {
+  font-size: var(--font-size-small);
+}
+
+@media (min-width: 1200px) {
+  .section.faq {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--spacing-l);
+    align-items: start;
+    max-width: var(--wrapper-width);
+    margin-inline: auto;
+  }
+
+  /* the grid container now does the width-capping/centering the per-wrapper
+     rule normally handles */
+  .section.faq > div {
+    max-width: none;
+    margin: 0;
+  }
+
+  .section.faq > .default-content-wrapper:first-child {
+    grid-column: 1 / span 8;
+    grid-row: 1;
+  }
+
+  .section.faq > .accordion-wrapper {
+    grid-column: 1 / span 8;
+    grid-row: 2;
+  }
+
+  .section.faq > .default-content-wrapper:last-child {
+    grid-column: 10 / span 3;
+    grid-row: 1;
+  }
 }
 
 /* FAQ question headings sit flush against their answer, with no extra

@@ -1,0 +1,65 @@
+/*
+ * Values measured from the reference's collapsed accordion: 48.7px item
+ * rows, a 2px #ebebeb bottom border, 13.33px button padding, and a 16px/600
+ * uppercase Source Sans Pro title in near-black, with a +/- affordance
+ * right-aligned. No fixed row height is set — padding + line-height reproduce
+ * the measured 48.7px without clipping a wrapped question.
+ */
+.accordion-item {
+  border-bottom: 2px solid var(--color-dark-text);
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+  padding: 0.7778rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion-header::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: #000;
+}
+
+/* +/- affordance (as on the reference), right-aligned: a plus drawn from two
+   crossed bars; the vertical bar is dropped when open, leaving a minus */
+.accordion-header::after {
+  content: '';
+  flex: 0 0 auto;
+  width: 1.3125rem;
+  height: 1.25rem;
+  background-image:
+    linear-gradient(var(--color-text), var(--color-text)),
+    linear-gradient(var(--color-text), var(--color-text));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 2px, 2px 100%;
+}
+
+.accordion-item[open] .accordion-header::after {
+  background-size: 100% 2px, 0 0;
+}
+
+.accordion-panel {
+  padding: 0 0.7778rem 0.7778rem;
+}
+
+.accordion-panel > :first-child {
+  margin-top: 0;
+}
+
+.accordion-panel > :last-child {
+  margin-bottom: 0;
+}
