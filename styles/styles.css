@@ -98,14 +98,21 @@ h2 { font-size: var(--font-size-h2); }
 h3 { font-size: var(--font-size-h3); }
 h4, h5, h6 { font-size: var(--font-size-h4); }
 
-/* section/page headings carry the site's signature short yellow underline */
-.section > div > h1:first-child, .section > div > h2:first-child {
+/* section headings carry the site's signature short yellow underline. Every
+   section-level H2 gets it (including the several H2s inside an article body,
+   which the reference underlines too) — but only the *first* H1 does, since a
+   page title is the sole H1. Block-internal headings (card titles, the feature
+   teaser's H2, FAQ accordion questions) are never direct children of a section
+   wrapper, so they're correctly excluded. Individual headings opt out via the
+   `plain-title` section style below. */
+.section > div > h1:first-child,
+.section > div > h2 {
   position: relative;
   padding-bottom: var(--spacing-s);
 }
 
 .section > div > h1:first-child::after,
-.section > div > h2:first-child::after {
+.section > div > h2::after {
   content: '';
   position: absolute;
   left: 0;
