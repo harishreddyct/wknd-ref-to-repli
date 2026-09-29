@@ -48,6 +48,8 @@ header.nav-scrolled .nav-utility-bar {
 
 .nav-utility {
   height: 100%;
+  max-width: var(--wrapper-width);
+  margin: 0 auto;
   padding: 0 var(--spacing-s);
   display: flex;
   align-items: center;
@@ -93,7 +95,9 @@ header.nav-scrolled .nav-utility-bar {
   flex: 1;
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
+  max-width: var(--wrapper-width);
   width: 100%;
+  margin: 0 auto;
   padding: 0 var(--spacing-s);
   display: flex;
   align-items: center;
