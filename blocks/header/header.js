@@ -99,12 +99,24 @@ export default async function decorate(block) {
 
   // shrink the header on scroll (reference collapses 194px -> 114px at
   // desktop): toggle a class past a small threshold and let CSS animate it.
+  // Hysteresis (different enter/exit thresholds) plus rAF-throttling keeps
+  // the class from flapping when scroll position hovers near one number,
+  // which was re-triggering the height transition and causing visible shake.
   const headerEl = block.closest('header') || document.querySelector('header');
   if (headerEl) {
-    const onScroll = () => {
-      headerEl.classList.toggle('nav-scrolled', window.scrollY > 32);
+    let ticking = false;
+    const updateScrolled = () => {
+      const threshold = headerEl.classList.contains('nav-scrolled') ? 24 : 48;
+      headerEl.classList.toggle('nav-scrolled', window.scrollY > threshold);
+      ticking = false;
     };
-    onScroll();
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateScrolled);
+      }
+    };
+    updateScrolled();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
