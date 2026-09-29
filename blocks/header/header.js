@@ -63,9 +63,13 @@ export default async function decorate(block) {
   utilityBar.className = 'nav-utility-bar';
   utilityBar.append(utility);
 
+  const mainBarInner = document.createElement('div');
+  mainBarInner.className = 'nav-main-bar-inner';
+  mainBarInner.append(brand, sections, search);
+
   const mainBar = document.createElement('div');
   mainBar.className = 'nav-main-bar';
-  mainBar.append(brand, sections, search);
+  mainBar.append(mainBarInner);
 
   const nav = document.createElement('nav');
   nav.id = 'nav';
@@ -81,7 +85,7 @@ export default async function decorate(block) {
     const expanded = nav.getAttribute('aria-expanded') === 'true';
     setMenuExpanded(nav, navToggle, !expanded);
   });
-  mainBar.prepend(navToggle);
+  mainBarInner.prepend(navToggle);
 
   window.addEventListener('keydown', (e) => {
     if (e.code === 'Escape' && nav.getAttribute('aria-expanded') === 'true') {
@@ -97,27 +101,33 @@ export default async function decorate(block) {
   block.append(wrapper);
   await decorateIcons(block);
 
-  // shrink the header on scroll (reference collapses 194px -> 114px at
-  // desktop): toggle a class past a small threshold and let CSS animate it.
-  // Hysteresis (different enter/exit thresholds) plus rAF-throttling keeps
-  // the class from flapping when scroll position hovers near one number,
-  // which was re-triggering the height transition and causing visible shake.
+  // shrink the header after the user scrolls past a small threshold
+  // (reference collapses 194px -> 114px at desktop). Driven by two
+  // IntersectionObservers against fixed sentinels rather than a `scroll`
+  // listener: window.scrollY is re-sampled on every scroll event and is
+  // not guaranteed monotonic during fast wheel/trackpad input (momentum
+  // scrolling can report it moving backward for a tick), which flapped
+  // the class and re-triggered the height transition mid-animation -
+  // that's what read as "shaking". Two sentinels at different offsets
+  // (enter once past 64px, exit once back above 16px) give the toggle
+  // hysteresis so scroll position drifting within that band can't flap it.
   const headerEl = block.closest('header') || document.querySelector('header');
-  if (headerEl) {
-    let ticking = false;
-    const updateScrolled = () => {
-      const threshold = headerEl.classList.contains('nav-scrolled') ? 24 : 48;
-      headerEl.classList.toggle('nav-scrolled', window.scrollY > threshold);
-      ticking = false;
+  if (headerEl && 'IntersectionObserver' in window) {
+    const makeSentinel = (top) => {
+      const el = document.createElement('div');
+      el.setAttribute('aria-hidden', 'true');
+      el.style.cssText = `position:absolute; top:${top}px; left:0; width:1px; height:1px; pointer-events:none;`;
+      document.body.prepend(el);
+      return el;
     };
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(updateScrolled);
-      }
-    };
-    updateScrolled();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    const enterSentinel = makeSentinel(64);
+    const exitSentinel = makeSentinel(16);
+    new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) headerEl.classList.add('nav-scrolled');
+    }).observe(enterSentinel);
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) headerEl.classList.remove('nav-scrolled');
+    }).observe(exitSentinel);
   }
 
   // decorateIcons() defaults every icon to alt="" (right for decorative
