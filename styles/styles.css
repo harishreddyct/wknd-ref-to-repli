@@ -36,6 +36,7 @@
 
   /* layout */
   --wrapper-width: 1200px;
+  --wrapper-width-wide: 105rem;
   --spacing-xs: 0.5rem;
   --spacing-s: 1rem;
   --spacing-m: 1.5rem;
@@ -249,7 +250,7 @@ button, .button {
   /* full-bleed up to this cap, then centers with equal margins beyond it —
      confirmed identical (1680px) at two different wide viewports, not an
      assumption */
-  max-width: 105rem;
+  max-width: var(--wrapper-width-wide);
   margin: 0 auto;
 }
 

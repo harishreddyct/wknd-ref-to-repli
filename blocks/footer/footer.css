@@ -7,7 +7,12 @@ footer {
      breakpoints). Without it the footer sits flush against the content — the
      only place on the site that relies on section-adjacent margin rather than
      its own spacing, so it has to be declared here, not on the sections. */
-  margin-top: 3rem;
+  margin: 3rem auto 0;
+
+  /* same treatment as the hero: bleeds edge-to-edge until this cap, then
+     centers with equal margins beyond it, instead of the dark background
+     running the full viewport width forever. */
+  max-width: var(--wrapper-width-wide);
 }
 
 .footer-wrapper > div {
